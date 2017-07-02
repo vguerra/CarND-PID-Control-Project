@@ -36,16 +36,16 @@ The idea is to have the vehicle to steer harder the farther away we are from the
 
 Lets set `Kp` to 0.2 and see how our vehicle starts OK, but quickly overshoots, specially as velocity increases.
 
-[![Project Video](https://img.youtube.com/vi/ht-VbfeFiLU/0.jpg)](https://youtu.be/ht-VbfeFiLU)
+[![PC](https://img.youtube.com/vi/ht-VbfeFiLU/0.jpg)](https://youtu.be/ht-VbfeFiLU)
 
 So in order to fix this overshooting problem, we consider additional meassurements. This is where Differential Control comes into play.
 
 #### Derivative Control
 This term looks at the CTE rate. Meaning, we look at how fast we are moving on the y axis w.r.t reference trayectory. The derivate control term is: `Kp * (CTE - CTE_prev)`. We multiply the difference of CTEs by the *Derivative Gain*. This term helps to tweek the resistance the vehicle feels moving towards the reference trajectory. If the Derivative Gain is too low, then the vehicle will be attracted to the reference trajectory and oscilate. In the contrary, if it is too low, it will take a longer time for the vehicle to correct for offsets. Choosing correctly the Derivative Gain allows the car to approach the desired trajectory quickly in a smooth way.
 
-Lets set `Kd` to 4.0 and see how our vehicle reacts.
+Lets set `Kd` to 1.5 and see how our vehicle reacts.
 
-[![Project Video](https://img.youtube.com/vi/7BEXDzZ5DMA/0.jpg)](https://youtu.be/7BEXDzZ5DMA)
+[![PDC](https://img.youtube.com/vi/wxl-JDxnwMg/0.jpg)](https://youtu.be/wxl-JDxnwMg)
 
 #### Integral Control
 We have seen that setting the Proportional Gain and the Derivative Gain make the vehicle drive OK the simulator track. But we can do better buy integrating a new term that helps the vehicle fight drifting caused by environmental or mechanical deffects. The integral control term: `Ki * Sum(CTE)`. We multiply the sum of all seen CTEs so far by the *Integral Gain*. The idea behind this term is to penalize the fact that the vehicle could be spending more time on one side of the track than the other w.r.t. the reference trajectory.

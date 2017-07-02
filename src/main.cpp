@@ -34,8 +34,9 @@ int main()
   uWS::Hub h;
 
   PID pid;
-  pid.Init(0.2, 0.005, 5.0);
-//  pid.Init(0.0, 0.0, 0.0);
+//  pid.Init(0.2, 0.001, 3.0);
+//  pid.Init(0.2, 0.0005, 1.5); good one
+    pid.Init(0.2, 0.0000, 1.5);
 
 //  Twiddle twiddle(pid, 500, 0.001);
 
