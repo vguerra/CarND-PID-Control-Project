@@ -48,13 +48,26 @@ Lets set `Kd` to 1.5 and see how our vehicle reacts.
 [![PDC](https://img.youtube.com/vi/wxl-JDxnwMg/0.jpg)](https://youtu.be/wxl-JDxnwMg)
 
 #### Integral Control
-We have seen that setting the Proportional Gain and the Derivative Gain make the vehicle drive OK the simulator track. But we can do better buy integrating a new term that helps the vehicle fight drifting caused by environmental or mechanical deffects. The integral control term: `Ki * Sum(CTE)`. We multiply the sum of all seen CTEs so far by the *Integral Gain*. The idea behind this term is to penalize the fact that the vehicle could be spending more time on one side of the track than the other w.r.t. the reference trajectory.
+We have seen that setting the Proportional Gain and the Derivative Gain make the vehicle drive OK the simulator track. But we can do better buy integrating a new term that helps the vehicle fight drifting caused by environmental or mechanical deffects. We introduce the integral control term: `Ki * Sum(CTE)`. We multiply the sum of all seen CTEs so far by the *Integral Gain*. The idea behind this term is to penalize the fact that the vehicle could be spending more time on one side of the track than the other w.r.t. the reference trajectory.
 
-Lets set the `Ki` to 0.005 and see how our vehicle drives this time.
+Lets set the `Ki` to 0.0009 and see how our vehicle drives this time.
 
+[![PIDC](https://img.youtube.com/vi/ppyhwgzDnKk/0.jpg)](https://youtu.be/ppyhwgzDnKk)
 
+So we have seen that we need to set up 3 parameters to controll all 3 terms that will dictate the steering angle.
 
+#### Choosing parameters
 
-- If we increase the Proportional gain: Increase the pull the car feels to the desired trajectory.
+The parameters were tunned manually, starting with all parameters at 0.0 and setting their values in the following order:
+
+* Kd
+* Kd
+* Ki
+
+[Twiddle was attempted](https://github.com/vguerra/CarND-PID-Control-Project/blob/master/src/twiddle.cpp) but it did not achieved convergence.
 
 ### Output Video
+
+This is the output of an entire lap on the simulator.
+
+[![PIDC](https://img.youtube.com/vi/VQa1Z5V68SM/0.jpg)](https://youtu.be/VQa1Z5V68SM)
